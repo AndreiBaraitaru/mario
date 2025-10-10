@@ -6,11 +6,9 @@ public class HeadHitTrigger : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        // Only trigger if Mario is moving upward
         var rb = other.attachedRigidbody;
         if (rb == null || rb.linearVelocity.y <= 0.1f) return;
 
-        // Try QuestionBox first, then Brick
         var qb = GetComponentInParent<QuestionBox>();
         if (qb != null) { qb.Activate(); return; }
 

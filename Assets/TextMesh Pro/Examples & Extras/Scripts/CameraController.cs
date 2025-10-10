@@ -183,7 +183,6 @@ namespace TMPro.Examples
                     }
 
 
-                    // Handle left & right 
                     if (deltaPosition.x > 0.01f || deltaPosition.x < -0.01f)
                     {
                         OrbitalAngle += deltaPosition.x * 0.1f;
@@ -195,7 +194,7 @@ namespace TMPro.Examples
 
                 }
 
-                // Check for left mouse button to select a new CameraTarget or to reset Follow position
+                
                 if (Input.GetMouseButton(0))
                 {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -205,7 +204,7 @@ namespace TMPro.Examples
                     {
                         if (hit.transform == CameraTarget)
                         {
-                            // Reset Follow Position
+                      
                             OrbitalAngle = 0;
                         }
                         else
@@ -223,7 +222,6 @@ namespace TMPro.Examples
                 {
                     if (dummyTarget == null)
                     {
-                        // We need a Dummy Target to anchor the Camera
                         dummyTarget = new GameObject("Camera Target").transform;
                         dummyTarget.position = CameraTarget.position;
                         dummyTarget.rotation = CameraTarget.rotation;
@@ -233,7 +231,6 @@ namespace TMPro.Examples
                     }
                     else if (dummyTarget != CameraTarget)
                     {
-                        // Move DummyTarget to CameraTarget
                         dummyTarget.position = CameraTarget.position;
                         dummyTarget.rotation = CameraTarget.rotation;
                         CameraTarget = dummyTarget;
@@ -253,7 +250,6 @@ namespace TMPro.Examples
 
             }
 
-            // Check Pinching to Zoom in - out on Mobile device
             if (touchCount == 2)
             {
                 Touch touch0 = Input.GetTouch(0);
@@ -270,19 +266,16 @@ namespace TMPro.Examples
                 if (zoomDelta > 0.01f || zoomDelta < -0.01f)
                 {
                     FollowDistance += zoomDelta * 0.25f;
-                    // Limit FollowDistance between min & max values.
                     FollowDistance = Mathf.Clamp(FollowDistance, MinFollowDistance, MaxFollowDistance);
                 }
 
 
             }
 
-            // Check MouseWheel to Zoom in-out
             if (mouseWheel < -0.01f || mouseWheel > 0.01f)
             {
 
                 FollowDistance -= mouseWheel * 5.0f;
-                // Limit FollowDistance between min & max values.
                 FollowDistance = Mathf.Clamp(FollowDistance, MinFollowDistance, MaxFollowDistance);
             }
 

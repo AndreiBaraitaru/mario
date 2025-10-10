@@ -24,7 +24,6 @@ public class QuestionBox : MonoBehaviour
     public float bounceHeight = 0.12f;
     public float bounceSpeed = 14f;
 
-    // Components
     private Animator anim;              
     private SpriteRenderer sr;
     private AudioSource audioSrc;
